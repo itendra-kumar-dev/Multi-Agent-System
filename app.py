@@ -142,7 +142,10 @@ with st.sidebar:
     st.markdown("**Environment**")
     known_keys = ("GROQ_API_KEY", "TAVILY_API_KEY", "OPENAI_API_KEY")
     env_keys_present = any(os.environ.get(k) for k in known_keys)
-    streamlit_keys_present = any(k in st.secrets for k in known_keys)
+    try:
+        streamlit_keys_present = any(k in st.secrets for k in known_keys)
+    except Exception:
+        streamlit_keys_present = False
     keys_present = env_keys_present or streamlit_keys_present
     st.write("🔑 API keys detected" if keys_present else "⚠️ No API keys configured")
 
