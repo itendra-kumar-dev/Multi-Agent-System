@@ -7,15 +7,16 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama
 
-from tools import scrape_url, web_search
+from tools import get_secret, scrape_url, web_search
 
 load_dotenv()
 
-if os.getenv("GROQ_API_KEY"):
+if get_secret("GROQ_API_KEY"):
     llm = ChatGroq(
         model="openai/gpt-oss-20b",
         temperature=0,
         max_tokens=1024,
+        api_key=get_secret("GROQ_API_KEY"),
     )
 else:
     llm = ChatOllama(model="qwen2.5:1.5b", temperature=0)

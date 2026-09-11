@@ -8,7 +8,20 @@ from tavily import TavilyClient
 
 load_dotenv()
 
-tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+
+def get_secret(name: str) -> str | None:
+    value = os.getenv(name)
+    if value:
+        return value
+    try:
+        import streamlit as st
+
+        return st.secrets.get(name)
+    except Exception:
+        return None
+
+
+tavily = TavilyClient(api_key=get_secret("TAVILY_API_KEY"))
 
 
 @tool

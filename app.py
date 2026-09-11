@@ -140,11 +140,11 @@ with st.sidebar:
 
     st.divider()
     st.markdown("**Environment**")
-    env_keys_present = any(
-        os.environ.get(k)
-        for k in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "TAVILY_API_KEY", "GOOGLE_API_KEY")
-    )
-    st.write("🔑 `.env` keys detected" if env_keys_present else "⚠️ No known API keys found in environment")
+    known_keys = ("GROQ_API_KEY", "TAVILY_API_KEY", "OPENAI_API_KEY")
+    env_keys_present = any(os.environ.get(k) for k in known_keys)
+    streamlit_keys_present = any(k in st.secrets for k in known_keys)
+    keys_present = env_keys_present or streamlit_keys_present
+    st.write("🔑 API keys detected" if keys_present else "⚠️ No API keys configured")
 
     st.divider()
     st.markdown("**History**")
