@@ -1,90 +1,26 @@
-# ==============================================================================
-# Byte-compiled / optimized / DLL files
-# ==============================================================================
+# Python bytecode & cache
 __pycache__/
-*.py[cod]
-*$py.class
 *.pyc
+*.pyo
 
-# C extensions
-*.so
+# Virtual environments
+.venv/
+venv/
+env/
 
-# ==============================================================================
-# Environments & Virtual Environments
-# ==============================================================================
+# Environment variables & secrets (NEVER commit)
 .env
 .env.*
 !.env.example
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-.venv/
 
-# ==============================================================================
-# Streamlit & Agent Cache
-# ==============================================================================
+# Streamlit local state
 .streamlit/secrets.toml
 .agents/
 
-# ==============================================================================
-# Operating System Files
-# ==============================================================================
+# Operating system files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-desktop.ini
 
-# ==============================================================================
-# IDEs and Text Editors
-# ==============================================================================
-.idea/
+# IDE & Editor settings
 .vscode/
-*.sublime-project
-*.sublime-workspace
-*.swp
-*.swo
-*~
-
-# ==============================================================================
-# Testing & Code Quality
-# ==============================================================================
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.nox/
-.mypy_cache/
-.ruff_cache/
-
-# ==============================================================================
-# Distribution / Packaging
-# ==============================================================================
-dist/
-build/
-develop-eggs/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# ==============================================================================
-# Logs & Database
-# ==============================================================================
-*.log
-*.sqlite
-*.sqlite3
-*.db
+.idea/
