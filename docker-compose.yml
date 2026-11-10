@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  researchmind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: researchmind-app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./.streamlit:/app/.streamlit:ro
