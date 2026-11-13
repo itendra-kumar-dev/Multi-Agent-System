@@ -114,6 +114,7 @@ Create a `.env` file in the root directory (refer to `.env.example`):
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
 TAVILY_API_KEY=your_tavily_api_key_here
+GROQ_API_KEY= your_groq_api_key_here
 ```
 - **OpenAI Key**: [Get API Key](https://platform.openai.com/api-keys)
 - **Tavily Key**: [Get Free Search Key](https://tavily.com/)
@@ -135,22 +136,6 @@ python pipeline.py
 Type your topic in the prompt. The terminal will log each step and print the final report alongside the critic's scorecard.
 
 ---
-
-## 🎯 Interview Deep-Dive: Key Talking Points
-
-When presenting this project in a machine learning / AI engineer interview, here are the architectural design decisions to emphasize:
-
-### 1. Why a Multi-Agent System Instead of a Single Prompt?
-- **Separation of Concerns**: In a single prompt, asking an LLM to search, scrape, synthesize, and review causes cognitive overload and instruction-following decay. Dividing the task allows each agent to focus on one objective.
-- **Cost & Token Efficiency**: Instead of blindly scraping all 5 search results (which exhausts context windows and risks token bloat), the **Reader Agent** acts as an intelligent filter, selecting only the highest-relevance URL to scrape deeply.
-
-### 2. How is Hallucination Mitigated?
-- **Source Grounding**: The Writer Chain does not generate from memory; it is strictly constrained to the aggregated context provided by Tavily snippets and the cleaned text extracted by BeautifulSoup.
-- **Citation Verification**: Every generated report must conclude with the explicit source URLs retrieved during the workflow.
-
-### 3. Why Include a Critic Chain (LLM-as-a-Judge)?
-- In production agentic systems, self-reflection and validation are critical. The Critic Chain evaluates the output against an objective rubric, scoring it out of 10 and diagnosing gaps without requiring manual human review.
-
 ### 4. Tech Stack Breakdown
 | Technology | Role in Architecture |
 | :--- | :--- |
